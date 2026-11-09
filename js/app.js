@@ -49,7 +49,7 @@ const App = {
 
   go(v) {
     App.view = v;
-    if (location.hash !== '#' + v) history.replaceState(null, '', '#' + v);
+    try { if (location.hash !== '#' + v) history.replaceState(null, '', '#' + v); } catch (e) { /* sandbox */ }
     U.$$('.nav-b').forEach((b) => b.classList.toggle('on', b.dataset.v === (NAV_PARENT[v] || v)));
     const root = U.$('#view');
     root.classList.remove('enter'); void root.offsetWidth; root.classList.add('enter');

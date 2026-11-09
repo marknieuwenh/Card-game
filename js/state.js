@@ -37,7 +37,7 @@ const S = {
     } catch (e) { return false; }
   },
   save() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(this.d)); } catch (e) { /* opslag vol of geblokkeerd */ } },
-  reset() { localStorage.removeItem(SAVE_KEY); location.reload(); },
+  reset() { try { localStorage.removeItem(SAVE_KEY); } catch (e) { /* opslag geblokkeerd */ } location.reload(); },
 
   /* ---- munten ---- */
   addCoins(n) {
